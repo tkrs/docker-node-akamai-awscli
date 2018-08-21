@@ -10,6 +10,7 @@ COPY --from=akamai /cli/.akamai-cli/src/cli-purge/akamai-purge    /cli/.akamai-c
 
 RUN apk -v --update add \
         python \
+        curl \
         py-pip \
         groff \
         less \
