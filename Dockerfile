@@ -22,6 +22,6 @@ RUN apk -v --update add \
 
 ENV AKAMAI_CLI_HOME=/cli
 
-VOLUME /root/.aws
-VOLUME /root/.edgerc
-VOLUME /cli
+# VOLUME /root/.aws
+# VOLUME /root/.edgerc
+# VOLUME /cli
