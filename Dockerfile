@@ -3,7 +3,7 @@ FROM akamaiopen/cli as akamai
 FROM node:8-alpine
 
 COPY --from=akamai /usr/local/bin/akamai                          /usr/local/bin/akamai
-COPY --from=akamai /cli/.akamai-cli/config	                      /cli/.akamai-cli/
+COPY --from=akamai /cli/.akamai-cli/config                        /cli/.akamai-cli/
 COPY --from=akamai /cli/.akamai-cli/cache                         /cli/.akamai-cli/
 COPY --from=akamai /cli/.akamai-cli/src/cli-purge/cli.json        /cli/.akamai-cli/src/cli-purge/
 COPY --from=akamai /cli/.akamai-cli/src/cli-purge/akamai-purge    /cli/.akamai-cli/src/cli-purge/
