@@ -1,6 +1,6 @@
 FROM akamaiopen/cli as akamai
 
-FROM node:8-alpine
+FROM node:12-alpine
 
 COPY --from=akamai /usr/local/bin/akamai                          /usr/local/bin/akamai
 COPY --from=akamai /cli/.akamai-cli/config                        /cli/.akamai-cli/
@@ -9,16 +9,17 @@ COPY --from=akamai /cli/.akamai-cli/src/cli-purge/cli.json        /cli/.akamai-c
 COPY --from=akamai /cli/.akamai-cli/src/cli-purge/akamai-purge    /cli/.akamai-cli/src/cli-purge/
 
 RUN apk -v --update add \
-        python \
+        python3 \
+        py3-pip \
         curl \
-        py-pip \
         groff \
         less \
         mailcap \
         && \
-    pip install --upgrade awscli python-magic && \
+    pip3 install --upgrade awscli python-magic && \
     apk -v --purge del py-pip && \
-    rm /var/cache/apk/*
+    rm /var/cache/apk/* && \
+    aws --version
 
 ENV AKAMAI_CLI_HOME=/cli
 
